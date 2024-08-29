@@ -1,0 +1,82 @@
+// FILE SYSTEM (fs)
+
+import fs from 'fs'; // Importa o modulo fs (File System)
+
+const fileName = 'arquivo.txt';
+const directoryName = 'pasta1';
+
+// ===== Functions ===== //
+function escreverArquivo() { // writeFile
+    const content = "Escrevendo no arquivo com Node.js e File System.\n";
+
+    fs.writeFile(fileName, content, (erro) => {
+        if (erro) {
+            console.log('Erro ao escrever o arquivo: ', erro);
+        } else {
+            console.log('Arquivo escrito com sucesso!');
+        }
+    });
+}
+
+function lerArquivo() { // readFile
+    fs.readFile(fileName, 'utf8', (erro, data) => {
+        if (erro) {
+            console.log('Erro ao ler o arquivo: ', erro);
+        } else {
+            console.log('Conteudo do arquivo: ', data);
+        }
+    });
+}
+
+function adicionarConteudo() {  // appendFile
+    const content = "Adicionando conteúdo no arquivo.\n";
+
+    fs.appendFile(fileName, content, (erro) => {
+        if (erro) {
+            console.log('Erro ao adicionar o conteúdo: ', erro);
+        } else {
+            console.log('Conteúdo adicionado com sucesso!');
+        }
+    });
+}
+
+function criarDiretorio() { // mkdir
+    fs.mkdir(directoryName, (erro) => {
+        if (erro) {
+            console.log('Erro ao criar o diretório: ', erro);
+        } else {
+            console.log('Diretório criado com sucesso!');
+        }
+    });
+}
+
+function lerDiretorio() { // readdir
+    fs.readdir(`./${directoryName}`, (erro, files) => {
+    // fs.readdir('.', (erro, files) => {
+        if (erro) {
+            console.log('Erro ao ler o diretório: ', erro);
+        } else {
+            console.log('Conteúdo do diretório: ', files);
+        }
+    });
+}
+
+function removerDiretorio() { // rm
+    fs.rm(directoryName, { recursive: true }, (erro) => {
+        if (erro) {
+            console.log('Erro ao remover o diretório: ', erro);
+        } else {
+            console.log('Diretório removido com sucesso!');
+        }
+    });
+}
+
+// ===== Chama as Functions ===== //
+// escreverArquivo();
+// lerArquivo();
+// adicionarConteudo();
+// criarDiretorio();
+// lerDiretorio();
+removerDiretorio();
+
+
